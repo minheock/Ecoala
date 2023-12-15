@@ -1,0 +1,158 @@
+package com.ecoala.ele.eleAnalysis.vo;
+
+public class EleAnalysisVO {
+
+	private String memId;			/** 회원번호*/
+	private String memNo;			/** 구성원수*/
+	private String houseType;		/** 주거유형*/
+	
+	private String userEleDay;		/** 사용자 하루 전력량*/
+	private String userEleNight;	/** 사용자 심야 전력량*/
+	private String userEleAM;		/** 사용자 오전 전력량*/
+	private String userElePM;		/** 사용자 오후 전력량*/
+	private String userEleDawn;		/** 사용자 저녁 전력량*/
+	
+	private String otherEleDay;		/** 타 사용자 하루 전력량*/
+	private String otherEleNight;	/** 타 사용자 심야 전력량*/
+	private String otherEleAM;		/** 타 사용자 오전 전력량*/
+	private String otherElePM;		/** 타 사용자 오후 전력량*/
+	private String otherEleDawn;	/** 타 사용자 저녁 전력량*/
+	
+	public EleAnalysisVO() {
+		
+	}
+
+	@Override
+	public String toString() {
+		return "EleAnalysisVO [memId=" + memId + ", memNo=" + memNo + ", houseType=" + houseType + ", userEleDay="
+				+ userEleDay + ", userEleNight=" + userEleNight + ", userEleAM=" + userEleAM + ", userElePM="
+				+ userElePM + ", userEleDawn=" + userEleDawn + ", otherEleDay=" + otherEleDay + ", otherEleNight="
+				+ otherEleNight + ", otherEleAM=" + otherEleAM + ", otherElePM=" + otherElePM + ", otherEleDawn="
+				+ otherEleDawn + "]";
+	}
+
+	public EleAnalysisVO(String memId, String memNo, String houseType, String userEleDay, String userEleNight,
+			String userEleAM, String userElePM, String userEleDawn, String otherEleDay, String otherEleNight,
+			String otherEleAM, String otherElePM, String otherEleDawn) {
+		super();
+		this.memId = memId;
+		this.memNo = memNo;
+		this.houseType = houseType;
+		this.userEleDay = userEleDay;
+		this.userEleNight = userEleNight;
+		this.userEleAM = userEleAM;
+		this.userElePM = userElePM;
+		this.userEleDawn = userEleDawn;
+		this.otherEleDay = otherEleDay;
+		this.otherEleNight = otherEleNight;
+		this.otherEleAM = otherEleAM;
+		this.otherElePM = otherElePM;
+		this.otherEleDawn = otherEleDawn;
+	}
+
+	public String getMemId() {
+		return memId;
+	}
+
+	public void setMemId(String memId) {
+		this.memId = memId;
+	}
+
+	public String getMemNo() {
+		return memNo;
+	}
+
+	public void setMemNo(String memNo) {
+		this.memNo = memNo;
+	}
+
+	public String getHouseType() {
+		return houseType;
+	}
+
+	public void setHouseType(String houseType) {
+		this.houseType = houseType;
+	}
+
+	public String getUserEleDay() {
+		return userEleDay;
+	}
+
+	public void setUserEleDay(String userEleDay) {
+		this.userEleDay = userEleDay;
+	}
+
+	public String getUserEleNight() {
+		return userEleNight;
+	}
+
+	public void setUserEleNight(String userEleNight) {
+		this.userEleNight = userEleNight;
+	}
+
+	public String getUserEleAM() {
+		return userEleAM;
+	}
+
+	public void setUserEleAM(String userEleAM) {
+		this.userEleAM = userEleAM;
+	}
+
+	public String getUserElePM() {
+		return userElePM;
+	}
+
+	public void setUserElePM(String userElePM) {
+		this.userElePM = userElePM;
+	}
+
+	public String getUserEleDawn() {
+		return userEleDawn;
+	}
+
+	public void setUserEleDawn(String userEleDawn) {
+		this.userEleDawn = userEleDawn;
+	}
+
+	public String getOtherEleDay() {
+		return otherEleDay;
+	}
+
+	public void setOtherEleDay(String otherEleDay) {
+		this.otherEleDay = otherEleDay;
+	}
+
+	public String getOtherEleNight() {
+		return otherEleNight;
+	}
+
+	public void setOtherEleNight(String otherEleNight) {
+		this.otherEleNight = otherEleNight;
+	}
+
+	public String getOtherEleAM() {
+		return otherEleAM;
+	}
+
+	public void setOtherEleAM(String otherEleAM) {
+		this.otherEleAM = otherEleAM;
+	}
+
+	public String getOtherElePM() {
+		return otherElePM;
+	}
+
+	public void setOtherElePM(String otherElePM) {
+		this.otherElePM = otherElePM;
+	}
+
+	public String getOtherEleDawn() {
+		return otherEleDawn;
+	}
+
+	public void setOtherEleDawn(String otherEleDawn) {
+		this.otherEleDawn = otherEleDawn;
+	}
+	
+
+}

@@ -1,0 +1,312 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecoala</title>
+    <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet" />    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>		
+	<style>
+        .bottom-left-1,
+        .bottom-right-1,
+        .bottom-left-2,
+        .bottom-right-2 {
+            z-index: 1;
+            box-shadow: 5px 5px 5px gray;
+            background-color: #19014b;
+            width: 42rem;
+            border-radius: 30px/25px;
+            /* margin: 10px;             */
+        }
+
+        .bottom-left-1,
+        .bottom-left-2 {
+            margin-left: 25px;
+            margin-right: 0;
+            margin-bottom: 25px;
+        }
+
+        .bottom-right-1,
+        .bottom-right-2 {
+            margin-left: 0;
+            margin-right: 100px;
+        }
+
+        /* 전력사용량_제목 */
+        .bottom_title {
+            padding: 14px;
+            z-index: 2;
+            color: aliceblue;
+            font-weight: 600;
+            font-size: 25px;
+        }
+
+        /* 전력사용량_가로막대바 */
+        .width_bar {
+            background-image: linear-gradient(to right, rgb(51, 255, 51), rgb(230, 245, 16), red);
+            z-index: 2;
+            width: 92%;
+            height: 35px;
+            border-radius: 30px;
+            margin-left: 3.5%;
+            margin-top: 50px;
+        }
+
+        /* 전력사용량_세모침 */
+        .ruler {
+            /* left 23% ~ 53% */
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 0;
+            border-bottom: 25px solid black;
+            border-top: 13px solid transparent;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+        }
+
+        /* 원형차트 */
+        .chart_container {
+            margin-left: 25%;
+            height: 350px;
+            /* width: 380px; */
+        }
+
+        /* 전기요금 */
+        .elec_bill {
+            font-size: 40px;
+            font-weight: 800;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            padding-top: 15px;
+            padding-right: 10px;
+            text-align: end;
+        }
+
+
+        /* 전력계산기 */
+        .eco_container {
+            height: 70px;
+        }
+
+        .ele_img,
+        .eco_img,
+        .tree_img {
+            margin-left: 30px;
+            height: 50px;
+        }
+
+        .ele_usage,
+        .eco_usage,
+        .tree_usage {
+            width: 30%;
+            margin-left: 30px;
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            padding-top: 15px;
+            text-align: center;
+        }
+
+        .ele_result,
+        .eco_result,
+        .tree_result {
+            box-shadow: 5px 5px 5px #131c3b;
+            padding-top: 15px;
+            text-align: center;
+            width: 40%;
+            font-size: 30px;
+            font-weight: bold;
+            background-color: #2F4287;
+            color: aliceblue;
+        }
+    </style>
+</head>
+
+ 
+<body>
+    <div class="content-container">
+        <div class="additional-div">
+            <%@include file="/WEB-INF/inc/left.jsp" %>
+            <div class="main-contain">
+                <div class="top">
+                    <div class="top-left">
+                        <h2 class="title">우리집 에너지 사용량</h2>
+                    </div>
+                    <!-- <div class="top-center"></div> -->
+                    <div class="top-right">
+                        <div class="right-logout">
+                            <div class="top-logout"></div>
+                            <div class="bottom-logout"></div>
+                        </div>
+                        <div class="right-mypage">
+                            <div class="top-mypage">
+                                <div class="left2-mypage">
+                                    <img class="img-mypage" src="${pageContext.request.contextPath}/assets/img/mypage.png" alt="">
+                                </div>
+                                <div class="right2-mypage">
+                                    <img class="img-logout" src="${pageContext.request.contextPath}/assets/img/logout.png" alt="">
+                                </div>
+                            </div>
+                            <div class="bottom-mypage">
+                                <div class="left2-mypage">
+                                    <b class="text-1">My Page</b>
+                                </div>
+                                <div class="right2-mypage">
+                                    <b class="text-2">Logout </b>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="bottom" style="padding: 10px; margin-top: 30px;grid-template-rows:none;">
+                    <div class="bottom-left-1" style="height: 300px;">
+                        <div class="bottom_title">오늘의 전력 사용량</div>
+                        <div class="width_bar">
+                            <div class="ruler"></div>
+                        </div>
+                        <div class="flex_word"
+                            style="z-index: 2; color: aliceblue; display: flex; margin-top: 10px; font-size: 14px;">
+                            <div style="margin-left: 80px;">표준이하</div>
+                            <div style="margin-left: 180px;">표준</div>
+                            <div style="margin-left: 180px;">표준이상</div>
+                        </div>
+                        <div>
+                            <div style="height: 30px;"></div>
+                            <div class="Box_Container" style="display: flex;">
+                                <div class="Box" style="width: 37%;"></div>
+                                <div class="result_ele"
+                                    style="z-index: 2; color: aliceblue; font-size: 40px; font-weight: bold;">240 kWh
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="bottom-right-1" style="height: 300px;">
+                        <div class="bottom_title" style="height: 25%;">이번달 납부 요금</div>
+                        <div class="bill_container" style="display: flex; height: 30%;">
+                            <div class="elec_bill"
+                                style="background-color: #2F4287; color: aliceblue; width: 50%; margin-left: 5%; box-shadow: 5px 5px 5px #131c3b;">
+                                24000원
+                            </div>
+                            <div style="width: 40%; margin-left: 5%">
+                                <div class="pre_month_bill" style="color: aliceblue; font-weight: bold;">전월 대비: </div>
+                                <div style="height: 20PX;"></div>
+                                <div class="pre_year_bill" style="color: aliceblue; font-weight: bold;">전년 동월 대비:</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="bottom-left-2" style="height: 420px;">
+                        <div class="bottom_title">가전별 전력 사용량</div>
+
+                        <div class="chart_container" style="z-index: 2;">
+                            <canvas id="myChart"  style="width: 450px; height: 450px; position: relative; bottom: 15%;"></canvas>
+                        </div>
+
+                    </div>
+                    <div class="bottom-right-2" style="height: 420px;">
+                        <div class="bottom_title">탄소배출 계산기</div>
+                        <div style="height: 260px; margin-top: 40px;">
+                            <!-- 1번 -->
+                            <div class="eco_container" style="display: flex;">
+                                <div class="ele_img">
+                                    <img src="${pageContext.request.contextPath}/assets/img/cryptocurrency-color_elec.png" alt="">
+                                </div>
+                                <div class="ele_usage">전기 사용량</div>
+                                <div class="ele_result" style="margin-left: 10px;">240 kWh</div>
+                            </div>
+                            <!-- 2번 -->
+                            <div class="eco_container" style="display: flex; margin-top: 20px;">
+                                <div class="eco_img">
+                                    <img src="${pageContext.request.contextPath}/assets/img/iwwa_co2.png" alt="">
+                                </div>
+                                <div class="eco_usage">CO2 발생량</div>
+                                <div class="eco_result">114.7 KG</div>
+                            </div>
+                            <!-- 3번 -->
+                            <div class="eco_container" style="display: flex; margin-top: 20px;">
+                                <div class="tree_img">
+                                    <img src="${pageContext.request.contextPath}/assets/img/typcn_tree.png" alt="">
+                                </div>
+                                <div class="tree_usage">필요 소나무</div>
+                                <div class="tree_result">27.8 그루</div>
+                            </div>
+
+                        </div>
+                        <div style="height: 30px;"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+       </div>
+	<script>
+            const ctx = document.getElementById('myChart').getContext('2d');        
+            const data = [300, 50, 100, 40, 80];
+            const labels = ['Computer', 'TV', 'Stove', 'Aircon', 'Other'];
+            const colors = ['#EE5656', '#3857BC', '#61CE5B', '#F3DA49', '#AE7DF0'];
+        
+            Chart.register(ChartDataLabels);
+        
+            const myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: colors,
+                        borderWidth: 0.3,  
+                    }],
+                                      
+                },
+                options: {
+                    // cutout: 80,
+                    responsive: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right',
+                            // align: 'start',
+                        },
+                        tooltip: {
+                        	enabled: true,
+                            callbacks: {
+                                label: function(context) {
+                                    const labelIndex = context.dataIndex;
+                                    const percentage = ((data[labelIndex] / data.reduce((a, b) => a + b, 0)) * 100).toFixed(2);
+                                    console.log(percentage)
+                                    console.log(`${labels[labelIndex]}: ${data[labelIndex]} (${percentage}%)`)
+                                    return labels[labelIndex]+ ': ' + data[labelIndex] +' ('+ percentage + ' %)'
+                                },
+                            },
+                        },
+                        datalabels: {
+                            formatter: (value, ctx) => {
+                                let sum = 0;
+                                let dataArr = ctx.chart.data.datasets[0].data;
+                                dataArr.map(data => {
+                                    sum += data;
+                                });
+                                let percentage = ((value / sum) * 100).toFixed(2) + "%";
+                                return percentage;
+                            },
+                            color: 'white',
+                            anchor: 'end',
+                            align: 'start',
+                            offset: 10,
+                            display: 'auto',
+                        },
+                    },
+                },
+            });                                   
+        </script>        
+</body>
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
+
+</html>

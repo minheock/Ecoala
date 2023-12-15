@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecoala.ele.eleInquiry.dao.IEleInquiryDAO">
+
+<!-- member 회원가입 -->
+    <select id="yearInquiry" resultType="com.ecoala.ele.eleInquiry.vo.EleInquiryVO"
+    parameterType="com.ecoala.ele.eleInquiry.vo.EleInquiryVO">
+       
+SELECT mem_id as memId, TO_CHAR(MRD_DT, 'YY-MM') AS dateYear, ROUND(SUM(USE_ELE), 3) AS eleYear
+FROM mem_ele
+WHERE TO_CHAR(MRD_DT, 'YY-MM-DD') 
+BETWEEN TO_CHAR(ADD_MONTHS(TO_DATE('22-08-30', 'YY-MM-DD'), -12), 'YY-MM-DD')
+AND '22-08-30'
+AND mem_id = #{memId}
+GROUP BY mem_id, TO_CHAR(MRD_DT, 'YY-MM')
+ORDER BY dateYear
+        </select>
+        
+<select id="monthInquiry" resultType="com.ecoala.ele.eleInquiry.vo.EleInquiryVO">
+        
+SELECT mem_id as memId, TO_CHAR(MRD_DT, 'YY-MM-DD') AS dateMonth, ROUND(SUM(USE_ELE), 3) AS eleMonth
+FROM mem_ele
+WHERE TO_DATE(MRD_DT, 'YY-MM-DD') BETWEEN TO_DATE('22-08-30', 'YY-MM-DD') - 30 AND TO_DATE('22-08-30', 'YY-MM-DD')
+  AND mem_id = '1110100002'
+GROUP BY mem_id, TO_CHAR(MRD_DT, 'YY-MM-DD')
+ORDER BY dateMonth
+
+</select>
+
+<select id="weekInquiry" resultType="com.ecoala.ele.eleInquiry.vo.EleInquiryVO">
+SELECT 
+    mem_id as memId,
+    TO_CHAR(MRD_DT, 'YY-MM-DD') as dateWeek,
+    ROUND(SUM(USE_ELE), 3) as eleWeek
+FROM 
+    mem_ele
+WHERE 
+    TO_DATE(MRD_DT, 'YY-MM-DD') BETWEEN TO_DATE('22-08-30', 'YY-MM-DD') - 6 AND TO_DATE('22-08-30', 'YY-MM-DD')
+    AND mem_id = '1110100002'
+GROUP BY 
+    mem_id, TO_CHAR(MRD_DT, 'YY-MM-DD')
+ORDER BY 
+    dateWeek DESC
+</select>
+<select id="getDateEleList" resultType="com.ecoala.ele.eleInquiry.vo.EleInquiryVO">
+
+SELECT *
+from mem_ele
+</select>
+
+</mapper>

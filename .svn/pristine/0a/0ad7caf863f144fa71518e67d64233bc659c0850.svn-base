@@ -1,0 +1,88 @@
+<%--
+/**
+ * <pre>
+ * 1. 프로젝트명 : 에코알라 프로젝트
+ * 2. 작성일 : 2023. 11. 28. 오후 2:45:26
+ * 3. 작성자 : YoonGaYoung
+ * 4. 화면ID : 화면정의서 화면ID
+ * 5. 화면명 : 게시글 작성 페이지
+ * 6. 설명 : 화면명과 동일하거나 기타 특이사항 기술
+ * </pre>
+ */
+--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시글 수정 페이지</title>
+<link href="${pageContext.request.contextPath}/css/noGirdMain.css"
+	rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/css/boardWrite.css"
+	rel="stylesheet" />
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
+</head>
+<body>
+	<div class="content-container">
+		<div class="additional-div">
+			<%@include file="/WEB-INF/inc/left.jsp"%>
+
+			<div class="main-contain">
+				<!--START: top -->
+				<div class="top">
+					<div class="top-left">
+						<h1 class="title">게시판</h1>
+					</div>
+					<div class="top-center"></div>
+					<div class="top-right">
+						<div class="right-logout">
+							<div class="top-logout"></div>
+							<div class="bottom-logout"></div>
+						</div>
+						<div class="right-mypage">
+							<div class="top-mypage">
+								<div class="left2-mypage">
+									<img class="img-mypage" src="./assets/img/mypage.png" alt="">
+								</div>
+								<div class="right2-mypage">
+									<img class="img-logout" src="./assets/img/logout.png" alt="">
+								</div>
+							</div>
+							<div class="bottom-mypage">
+								<div class="left2-mypage">
+									<b class="text-1">My Page</b>
+								</div>
+								<div class="right2-mypage">
+									<b class="text-2">Logout </b>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!--END: top -->
+				<div class="bottom">
+					<form action="<c:url value="/boardEditDo" />" method="post">
+						<div class="container">
+							<div class="board-top">
+								<label for="title">제목</label>
+                                <input class="form-control" id="title" name="boardTitle" type="text" value="${board.boardTitle }"/>
+							</div>
+							<div class="board-main">
+								<textarea class="form-control" name="boardContent" style="height: 20rem">${board.boardContent }</textarea>
+							</div>
+							<input type="hidden" name="boardNo" value="${board.boardNo }"/>
+							<div class="board-bottom">
+								<div class="bo-bot-button">
+									<button type="submit" >등록</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

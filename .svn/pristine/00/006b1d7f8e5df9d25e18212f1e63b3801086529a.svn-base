@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecoala.ele.mngrMember.dao.IMngMemberDAO">
+
+<!-- member 회원가입 -->
+    <insert id="registMember" parameterType="com.ecoala.ele.mngrMember.vo.MngMemberVO">
+        INSERT INTO member(
+        		mem_id
+        	   ,user_id
+               ,user_pw
+               ,user_nm
+               ,mem_no
+               ,house_type
+               ,house_area
+               ,region
+               )
+               VALUES(
+               mem_id_seq.nextval
+              ,#{userId}
+              ,#{userPw}
+              ,#{userNm}
+              ,#{memNo}
+              ,#{houseType}
+              ,#{houseArea}
+              ,#{region}
+               )
+        
+    </insert>
+
+</mapper>

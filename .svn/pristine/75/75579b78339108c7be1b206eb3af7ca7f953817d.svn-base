@@ -1,0 +1,90 @@
+package com.ecoala.ele.eleInquiry.vo;
+
+public class EleInquiryVO {
+	private String memId;			/** 회원번호*/
+	private String dateYear;		/** 1년*/
+	private String eleYear;			/** 1년 전력량*/
+	private String dateMonth;		/** 1개월*/
+	private String eleMonth;		/** 1개월 전력량*/
+	private String dateWeek;		/** 1주일*/
+	private String eleWeek;			/** 1주일 전력량*/
+	
+	
+	
+	
+	public EleInquiryVO(){
+	}
+	
+	
+	public EleInquiryVO(String memId, String dateYear, String eleYear, String dateMonth, String eleMonth,
+			String dateWeek, String eleWeek) {
+		super();
+		this.memId = memId;
+		this.dateYear = dateYear;
+		this.eleYear = eleYear;
+		this.dateMonth = dateMonth;
+		this.eleMonth = eleMonth;
+		this.dateWeek = dateWeek;
+		this.eleWeek = eleWeek;
+	}
+
+
+	@Override
+	public String toString() {
+		return "EleInquiryVO [memId=" + memId + ", dateYear=" + dateYear + ", eleYear=" + eleYear + ", dateMonth="
+				+ dateMonth + ", eleMonth=" + eleMonth + ", dateWeek=" + dateWeek + ", eleWeek=" + eleWeek + "]";
+	}
+	
+	public String getMemId() {
+		return memId;
+	}
+
+	public void setMemId(String memId) {
+		this.memId = memId;
+	}
+	public String getDateYear() {
+		return dateYear;
+	}
+	public void setDateYear(String dateYear) {
+		this.dateYear = dateYear;
+	}
+	public String getEleYear() {
+		return eleYear;
+	}
+	public void setEleYear(String eleYear) {
+		this.eleYear = eleYear;
+	}
+	public String getDateMonth() {
+		return dateMonth;
+	}
+	public void setDateMonth(String dateMonth) {
+		this.dateMonth = dateMonth;
+	}
+	public String getEleMonth() {
+		return eleMonth;
+	}
+	public void setEleMonth(String eleMonth) {
+		this.eleMonth = eleMonth;
+	}
+	public String getDateWeek() {
+		return dateWeek;
+	}
+	public void setDateWeek(String dateWeek) {
+		this.dateWeek = dateWeek;
+	}
+	public String getEleWeek() {
+		return eleWeek;
+	}
+	public void setEleWeek(String eleWeek) {
+		this.eleWeek = eleWeek;
+	}
+
+
+	public Object dateEle() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+}

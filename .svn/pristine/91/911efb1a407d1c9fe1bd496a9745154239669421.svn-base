@@ -1,0 +1,14 @@
+package com.ecoala.ele.main.dao;
+
+
+
+import org.apache.ibatis.annotations.Mapper;
+import com.ecoala.ele.main.vo.EachEleVO;
+
+
+@Mapper
+public interface IMainDAO {
+	public EachEleVO getEachEle(EachEleVO memId);
+	
+	
+}

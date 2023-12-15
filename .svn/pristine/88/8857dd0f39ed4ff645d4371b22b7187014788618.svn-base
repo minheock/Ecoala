@@ -1,0 +1,21 @@
+package com.ecoala.ele.mngrMember.dao;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.ecoala.ele.mngrMember.vo.MngMemberVO;
+
+/**
+ * Class Name  : IMngMemberDAO
+ * Author      : LeeGyuHwan
+ * Created Date: 2023. 11. 23.
+ * Version: 1.0
+ * Purpose:   
+ * Description: 회원가입DAO
+ */
+@Mapper
+public interface IMngMemberDAO {
+	
+	// 회원가입
+	public int registMember(MngMemberVO member);
+
+}

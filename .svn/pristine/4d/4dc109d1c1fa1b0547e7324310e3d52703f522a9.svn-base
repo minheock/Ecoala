@@ -1,0 +1,30 @@
+package com.ecoala.ele.free.service;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import com.ecoala.ele.free.dao.IBoardDAO;
+import com.ecoala.ele.free.vo.BoardVO;
+
+@Service
+public class BoardService {
+
+	@Inject
+	IBoardDAO boardDao;
+	
+	/**
+	 * @Author : LeeGyuHwan
+	 * @Date   : 2023. 11. 20.
+	 * @Method : getBoardList
+	 * @return : List<BoardVO>
+	 * Purpose :
+	 * Description : 게시판 기본 조회 
+	*/
+	public List<BoardVO> getBoardList(){
+		return boardDao.getBoardList();
+	}
+
+}

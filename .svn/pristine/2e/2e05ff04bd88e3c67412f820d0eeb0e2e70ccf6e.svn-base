@@ -1,0 +1,20 @@
+package com.ecoala.ele.billDet.dao;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.ecoala.ele.billDet.vo.BillDetVO;
+
+/**
+ * Class Name  : IBillDetDAO
+ * Author      : YoonGaYoung
+ * Created Date: 2023. 12. 5.
+ * Version: 1.0
+ * Purpose:   
+ * Description: 
+ */
+@Mapper
+public interface IBillDetDAO {
+	
+	public BillDetVO getMonthlySumEle (BillDetVO vo);
+
+}

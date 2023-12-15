@@ -1,0 +1,85 @@
+<%--
+/**
+ * <pre>
+ * 1. 프로젝트명 : 에코알라 프로젝트
+ * 2. 작성일 : 2023. 11. 28. 오전 10:50:53
+ * 3. 작성자 : yejunseo 
+ * 4. 화면ID : 
+ * 5. 화면명 : 관리자 회원관리 페이지
+ * 6. 설명 : 
+ * </pre>
+ */
+--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ecoala</title>
+<!-- 부트 스트랩 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<link href="${pageContext.request.contextPath}/css/admin.css"
+	rel="stylesheet" />
+<body>
+	<div class="content-container">
+		<div class="additional-div">
+			<%@include file="/WEB-INF/inc/mngrLeft.jsp"%>
+
+			<div class="main-contain">
+				<div class="top">
+					<div class="top-left">
+						<h1 class="title">Admin</h1>
+					</div>
+					<div class="top-center"></div>
+					<div class="top-right">
+						<div class="right-logout">
+							<div class="top-logout"></div>
+							<div class="bottom-logout"></div>
+						</div>
+						<div class="right-mypage">
+							<div class="top-mypage">
+								<div class="right2-mypage">
+									<img class="img-logout"
+										src="${pageContext.request.contextPath}/assets/img/logout.png"
+										alt="">
+								</div>
+							</div>
+							<div class="bottom-mypage">
+								<div class="right2-mypage">
+									<b class="text-2">Logout</b>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="container mt-4">
+					<div class="row">
+						<div class="col">
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th class="text-center">유저아이디</th>
+										<th class="text-center">유저닉네임</th>
+										<th class="text-center">유저생성날짜</th>
+										<th class="text-center">유저삭제여부</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${memList}" var="mem">
+										<tr class="text-center">
+											<td>${mem.userId }</td>
+											<td>${mem.userNm }</td>
+											<td>${mem.userDt }</td>
+											<td>${mem.delYn }</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- 부트 스트랩 -->
+					<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

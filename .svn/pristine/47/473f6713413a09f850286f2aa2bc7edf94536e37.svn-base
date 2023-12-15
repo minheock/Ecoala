@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecoala.ele.eleAnalysis.dao.IEleAnalysisDAO">
+
+<!--정적메소드 사용 방법.  @클래스이름@메소드이름(파라미터이름) -->
+	<sql id="monthSel" > 
+		<if test="@org.apache.commons.lang3.StringUtils@isNotBlank(selectMonth)">
+			<choose> 
+				<when test='selectMonth=="1"'>
+					AND USE_DT > ADD_MONTHS((SELECT MAX(USE_DT) FROM mem_app_ele), -1)
+				</when>
+				<when test='selectMonth=="2"'>
+					AND USE_DT > ADD_MONTHS((SELECT MAX(USE_DT) FROM mem_app_ele), -2)
+				</when>
+				<when test='selectMonth=="3"'>
+					AND USE_DT > ADD_MONTHS((SELECT MAX(USE_DT) FROM mem_app_ele), -3)
+				</when>
+			</choose>
+		</if>
+	</sql>
+	
+<!-- 일년치 전력량-->
+<select id="oneMonthEle" resultType="com.ecoala.ele.eleAnalysis.vo.EleAnalysisVO"
+parameterType="com.ecoala.ele.eleAnalysis.vo.EleAnalysisVO">
+
+SELECT   SUM(CASE WHEN dt_hh BETWEEN '18' AND '23' THEN sum_ele ELSE 0 END) AS eleNight 
+       , SUM(CASE WHEN dt_hh BETWEEN '00' AND '05' THEN sum_ele ELSE 0 END) AS eleDawn
+       , SUM(CASE WHEN dt_hh BETWEEN '06' AND '11' THEN sum_ele ELSE 0 END) AS elePm
+       , SUM(CASE WHEN dt_hh BETWEEN '12' AND '17' THEN sum_ele ELSE 0 END) AS eleAm 
+       , sum(sum_ele) as eleDay        
+from(      
+    select   to_char(to_date(use_hm, 'hh24:mi'),'HH24') as dt_hh, sum(use_ele)  as sum_ele    
+    FROM (
+        SELECT to_char(use_dt,'hh24:mi') as use_hm,
+               ROUND(AVG(dt + aircon + tv + heat + stove + blanket + afry + ahs + other_appliances), 3) AS use_ELE
+        FROM mem_app_ele
+        WHERE mem_id = #{memId}
+        <include refid="monthSel" ></include>
+        GROUP BY mem_id,to_char(use_dt,'hh24:mi')
+        order by to_char(use_dt,'hh24:mi')
+        ) a
+    GROUP BY to_char(to_date(use_hm, 'hh24:mi'),'HH24')
+    order by to_char(to_date(use_hm, 'hh24:mi'),'HH24')
+    ) q
+</select>
+</mapper>

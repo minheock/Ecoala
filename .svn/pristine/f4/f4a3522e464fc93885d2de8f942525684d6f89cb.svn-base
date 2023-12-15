@@ -1,0 +1,32 @@
+package com.ecoala.ele.eleInquiry.web;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ecoala.ele.eleInquiry.service.EleInquiryService;
+import com.ecoala.ele.eleInquiry.vo.EleInquiryVO;
+
+@Controller
+public class EleInquiryController {
+
+	@Autowired
+	EleInquiryService eleInquiryService;
+
+	@RequestMapping("/eleInquiryView")
+	public String eleInquiry() {
+		return "user/eleInquiry/eleInquiryView";
+	}
+	
+	
+//	@ResponseBody
+//	@PostMapping("/dateEleDo")
+//	public EleInquiryVO dateEleDo(@RequestBody EleInquiryVO user) throws Exception {
+//	    EleInquiryVO result = EleInquiryService.getDateEleList(user.getMemId());
+//	    return result;
+//	}
+
+}

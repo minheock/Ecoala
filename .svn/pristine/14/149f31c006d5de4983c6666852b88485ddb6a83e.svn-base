@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecoala.ele.mbrMember.dao.IMngMemberDAO">
+
+	<!-- member 회원가입 -->
+	<insert id="registMember" parameterType="MngMemberVO">
+		INSERT INTO member(
+		mem_id
+		,user_id
+		,user_pw
+		,user_nm
+		,mem_no
+		,job_type
+		,house_type
+		,house_area
+		,region
+		)
+		VALUES(
+		#{memId}
+		,#{userId}
+		,#{userPw}
+		,#{userNm}
+		,#{memNo}
+		,#{jobType}
+		,#{houseType}
+		,#{houseArea}
+		,#{region}
+		)
+	</insert>
+	<insert id="registMemInfo" parameterType="MngMemberVO">
+		<!-- 생성된 키 값을 memId 에 할당 // 반환된는 값의 타입 지정 //쿼리 실행 순서 주 쿼리 실행 전에 실행되어야함을 
+			의미 -->
+		<selectKey keyProperty="memId" resultType="String"
+			order="BEFORE">
+			SELECT mem_info_seq.nextval AS memId FROM dual
+		</selectKey>
+
+		INSERT INTO mem_info(
+		mem_id
+		,mem_no
+		,job_type
+		,house_type
+		,house_area
+		,region
+		)
+		VALUES(
+		#{memId}
+		,#{memNo}
+		,#{jobType}
+		,#{houseType}
+		,#{houseArea}
+		,#{region}
+		)
+	</insert>
+	<!-- member 유저 로그인 -->
+	<select id="loginMember" parameterType="MngMemberVO"
+		resultType="MngMemberVO">
+		SELECT user_id
+		,user_pw
+		,mem_id
+		FROM member
+		WHERE user_id =
+		#{userId, jdbcType=VARCHAR}
+		AND del_Yn = 'N'
+	</select>
+	<!-- member 관리자 로그인 -->
+	<select id="mngrMember" parameterType="MngMemberVO"
+		resultType="MngMemberVO">
+		SELECT user_id
+		,user_pw
+		,authority
+		FROM member
+		WHERE user_id =
+		#{userId, jdbcType=VARCHAR}
+		AND authority = 'Y'
+	</select>
+	<!-- member 회원정보 조회 -->
+	<select id="mngrMemberList" resultType="MngMemberVO">
+		SELECT user_id, user_nm,
+		to_char(user_dt,'YYYY-MM-DD') as user_dt, del_yn
+		FROM member
+	</select>
+	<!-- member 상세정보 조회 -->
+	<select id="getmember" resultType="MngMemberVO"
+		parameterType="String">
+		SELECT mem_id, user_id, user_nm, mem_no, job_type,
+		house_type
+		,house_area, region, to_char(user_dt,'YYYY-MM-DD') as
+		user_dt, del_yn
+		FROM member
+		where user_id = #{userId, jdbcType=VARCHAR}
+	</select>
+	<!-- member 삭제 -->
+	<update id="deleteMember" parameterType="String">
+		UPDATE member
+		SET del_yn
+		= 'Y'
+		WHERE mem_id = #{memId}
+	</update>
+	<!-- <select id="searchBoardList" 
+    resultType="BoardVO" 
+    parameterType="SearchVO">
+ -->
+</mapper>

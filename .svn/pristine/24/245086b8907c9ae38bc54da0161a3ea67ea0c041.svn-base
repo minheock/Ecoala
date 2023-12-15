@@ -1,0 +1,47 @@
+package com.ecoala.ele.eleInquiry.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ecoala.ele.eleInquiry.dao.IEleInquiryDAO;
+import com.ecoala.ele.eleInquiry.vo.EleInquiryVO;
+
+@Service
+public class EleInquiryService {
+	@Autowired
+	IEleInquiryDAO dao;
+	
+	public EleInquiryVO yearInquiry(EleInquiryVO user) {
+		EleInquiryVO result =dao.yearInquiry(user);
+		if(result ==null) {
+			return null;	
+		}
+		return result;
+	}
+	
+	public EleInquiryVO monthInquiry(EleInquiryVO user) {
+		EleInquiryVO result =dao.monthInquiry(user);
+		if(result ==null) {
+			return null;	
+		}
+		return result;
+	}
+	
+	public EleInquiryVO weekInquiry(EleInquiryVO user) {
+		EleInquiryVO result =dao.weekInquiry(user);
+		if(result ==null) {
+			return null;	
+		}
+		return result;
+	}
+	public List<EleInquiryVO> getDateEleList(EleInquiryVO member){
+		List<EleInquiryVO> result = dao.getDateEleList(member);
+		System.out.println(result);
+		System.out.println("result");
+		return result;
+	}
+
+
+}

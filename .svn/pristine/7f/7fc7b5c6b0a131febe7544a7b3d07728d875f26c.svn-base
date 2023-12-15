@@ -1,0 +1,30 @@
+package com.ecoala.ele.board.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.ecoala.ele.board.vo.BoardVO;
+import com.ecoala.ele.board.vo.SearchVO;
+
+/**
+ * Class Name  : IBoardDAO
+ * Author      : YoonGaYoung
+ * Created Date: 2023. 11. 23.
+ * Version: 1.0
+ * Purpose:   
+ * Description: 
+ */
+@Mapper
+public interface IBoardDAO {
+
+//	public BoardVO getBoard(int boardNo);
+	public List<BoardVO> getBoardList();
+	public int writeBoard(BoardVO board);
+//	public List<BoardVO> searchBoardList(SearchVO search);
+//	public int updateBoard(BoardVO board);
+//	public int deleteBoard(int boardNo);
+//	public int increaseLike (int boardNo);
+	
+
+}

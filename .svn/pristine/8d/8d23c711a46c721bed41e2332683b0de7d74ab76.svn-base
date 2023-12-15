@@ -1,0 +1,119 @@
+package com.ecoala.ele.main.vo;
+
+/**
+ * Class Name  : EachEleVO
+ * Author      : ChoiMinHyeock
+ * Created Date: 2023. 11. 28.
+ * Version: 1.0
+ * Purpose: 가전별 전력량 VO 
+ * Description: 
+ */
+public class EachEleVO {
+	private String memId; // 회원아이디
+	private String useDt; // 날짜
+	private int computer; // 컴퓨터
+	private int aircon;   // 에어컨
+	private int tv;       // TV
+	private int heat;     // 난방기
+	private int stove;	  // 전기난로
+	private int blanket;  // 전기장판
+	private int afry;     // 에어프라이어
+	private int ahs;	  // 온냉방기
+	private int otherAppliances; // 기타가전
+	
+	
+	public EachEleVO() {}
+					
+		
+	public EachEleVO(String memId,String useDt, int computer, int aircon, int tv, int heat, int stove, int blanket,
+			int afry, int ahs, int otherAppliances) {
+		super();
+		this.memId = memId;
+		this.useDt = useDt;
+		this.computer = computer;
+		this.aircon = aircon;
+		this.tv = tv;
+		this.heat = heat;
+		this.stove = stove;
+		this.blanket = blanket;
+		this.afry = afry;
+		this.ahs = ahs;
+		this.otherAppliances = otherAppliances;
+	}
+	
+	public String getMemId() {
+		return memId;
+	}
+	public void setMemId(String memId) {
+		this.memId = memId;
+	}
+	public String getUseDt() {
+		return useDt;
+	}
+	public void setUseDt(String useDt) {
+		this.useDt = useDt;
+	}
+	public int getComputer() {
+		return computer;
+	}
+	public void setComputer(int computer) {
+		this.computer = computer;
+	}
+	public int getAircon() {
+		return aircon;
+	}
+	public void setAircon(int aircon) {
+		this.aircon = aircon;
+	}
+	public int getTv() {
+		return tv;
+	}
+	public void setTv(int tv) {
+		this.tv = tv;
+	}
+	public int getHeat() {
+		return heat;
+	}
+	public void setHeat(int heat) {
+		this.heat = heat;
+	}
+	public int getStove() {
+		return stove;
+	}
+	public void setStove(int stove) {
+		this.stove = stove;
+	}
+	public int getBlanket() {
+		return blanket;
+	}
+	public void setBlanket(int blanket) {
+		this.blanket = blanket;
+	}
+	public int getAfry() {
+		return afry;
+	}
+	public void setAfry(int afry) {
+		this.afry = afry;
+	}
+	public int getAhs() {
+		return ahs;
+	}
+	public void setAhs(int ahs) {
+		this.ahs = ahs;
+	}
+	public int getOtherAppliances() {
+		return otherAppliances;
+	}
+	public void setOtherAppliances(int otherAppliances) {
+		this.otherAppliances = otherAppliances;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "EachEleVO [memId=" + memId + ", useDt=" + useDt + ", computer=" + computer + ", aircon=" + aircon
+				+ ", tv=" + tv + ", heat=" + heat + ", stove=" + stove + ", blanket=" + blanket + ", afry=" + afry
+				+ ", ahs=" + ahs + ", otherAppliances=" + otherAppliances + "]";
+	}
+	
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecoala.ele.free.dao.IBoardDAO">
+	
+	<select id="getBoardList" resultType="com.ecoala.ele.free.vo.BoardVO" >
+		SELECT board_no
+	    	 , user_id
+			 , board_title
+		FROM board
+	</select>
+
+
+</mapper>

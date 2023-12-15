@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>회원가입</h2>
+	
+	<form action="${pageContext.request.contextPath}/registDo" method="post">
+   <!--  개인번호:<input type="text" name="idnm"><br/> -->
+    아이디:<input type="text" name="id"><br/>
+    비밀번호:<input type="password" name="pw"><br/>
+    회원이름:<input type="text" name="name"><br/>
+
+    <!-- 가구원수 -->
+    가구원수:
+    <select name="memno">
+        <option value="1">1인가구</option>
+        <option value="2">2~3인가구</option>
+        <option value="3">4인이상</option>
+        <!-- Add more options as needed -->
+    </select><br/>
+
+    <!-- 집 타입 -->
+    집 타입:
+    <select name="housetype">
+        <option value="1">아파트</option>
+        <option value="2">단독주택</option>
+        <option value="3">빌라</option>
+        <!-- Add more options as needed -->
+    </select><br/>
+
+      <!-- 집 면적 -->
+    집 면적:
+    <select name="housearea">
+        <option value="1">80㎡(24평)이하</option>
+        <option value="2">116㎡(35평)이하</option>
+        <option value="3">116㎡(35평)초과</option>
+        <!-- Add more options as needed -->
+    </select><br/>
+    <!-- 지역 -->
+    지역:
+    <select name="region">
+        <option value="1">순천시</option>
+        <option value="2">목포시</option>
+        <option value="3">여수시</option>
+        <option value="4">광양시</option>
+        <option value="5">나주시</option>
+        <!-- Add more options as needed -->
+    </select><br/>
+
+    <br/>
+    <input type="submit" value="가입">
+</form>
+</body>
+</html>

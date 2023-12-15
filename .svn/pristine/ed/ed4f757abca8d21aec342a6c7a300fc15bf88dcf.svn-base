@@ -1,0 +1,26 @@
+package com.ecoala.ele.main.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ecoala.ele.main.dao.IMainDAO;
+import com.ecoala.ele.main.vo.EachEleVO;
+
+@Service
+public class MainService {	
+	@Autowired
+	IMainDAO dao;
+	
+	public EachEleVO getEachEle(EachEleVO memId) throws Exception {
+		EachEleVO result = dao.getEachEle(memId);
+		if(result == null) {
+			throw new Exception();
+		}
+		return result;
+	}
+}
+//ReplyVO result = dao.getReply(replyNo);
+//if (result == null) {
+//	throw new Exception();
+//}
+//return result;

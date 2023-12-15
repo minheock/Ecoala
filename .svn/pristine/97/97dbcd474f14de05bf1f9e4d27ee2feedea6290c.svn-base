@@ -1,0 +1,67 @@
+package com.ecoala.ele.main.web;
+
+
+
+
+import java.io.Console;
+
+import javax.mail.Session;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ecoala.ele.main.service.MainService;
+import com.ecoala.ele.main.vo.EachEleVO;
+import com.ecoala.ele.mbrMember.vo.MngMemberVO;
+
+
+
+
+@Controller
+public class MainController {
+	@Autowired
+	MainService mainservice;
+	
+	@RequestMapping("/mainView")
+	public String mainView(HttpSession session) {
+		MngMemberVO loginUser = (MngMemberVO) session.getAttribute("login");
+		System.out.println("얌얌이"+loginUser);
+		if(loginUser == null) {
+			return "redirect:/";
+		}
+		return "user/main/mainView";			    
+	}
+	
+
+	
+	
+	@ResponseBody
+	@PostMapping("/eachDo")
+	public ResponseEntity<?> eachDo(@RequestBody EachEleVO memId) throws Exception {		
+		try {
+			System.out.println("콘솔1: " + memId);			
+			memId.setUseDt("2020-09-04");			
+			EachEleVO result = mainservice.getEachEle(memId);
+			System.out.println("콘솔2: "+ result);
+			return ResponseEntity.ok(result);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버오류: "+ e.getMessage());
+		}
+		 
+	
+		
+	}		
+}
+
+
+

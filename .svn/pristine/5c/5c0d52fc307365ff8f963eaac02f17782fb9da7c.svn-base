@@ -1,0 +1,60 @@
+package com.ecoala.ele.mngrMember.web;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ecoala.ele.mngrMember.service.MngMemberService;
+import com.ecoala.ele.mngrMember.vo.MngMemberVO;
+
+/**
+ * Class Name  : MngMemberController
+ * Author      : LeeGyuHwan
+ * Created Date: 2023. 11. 23.
+ * Version: 1.0
+ * Purpose:   
+ * Description: 회원가입 페이지 만듬 회원가입시 디비매핑가능
+ */
+@Controller
+public class MngMemberController {
+
+	@Autowired
+	MngMemberService mngmemberService;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	@RequestMapping("/regist")
+	public String registView() {
+		return "commnons/registView";
+	}
+	
+	@RequestMapping("/registDo")
+	public String registDo(HttpServletRequest request) {
+		// 폼에서 전달된 파라미터값?
+		String memId = request.getParameter("idnm");
+		String userId = request.getParameter("id");
+		String userPw = request.getParameter("pw");
+		String userNm = request.getParameter("name");
+		String memNo = request.getParameter("memno");
+		String houseType = request.getParameter("housetype");
+		String houseArea = request.getParameter("housearea");
+		String region = request.getParameter("region");
+		// 비번 암호화
+		String encodePw = passwordEncoder.encode(userPw);
+		System.out.println("encodePw :" + encodePw);
+		
+		MngMemberVO member = new MngMemberVO(memId,userId,encodePw,userNm
+				, memNo, houseType, houseArea, region);
+		try {
+			mngmemberService.registMember(member);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "errorView";
+		}
+		return "redirect:/";
+	}
+}

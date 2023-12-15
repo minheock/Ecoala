@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecoala.ele.main.dao.IMainDAO">
+
+    <select id="getEachEle" resultType="com.ecoala.ele.main.vo.EachEleVO">
+		select mem_id
+			,  to_char(use_dt, 'YYYY-MM-DD') as use_dt
+		    ,  sum(dt)               as computer
+		    ,  sum(aircon)           as aircon
+		    ,  sum(tv)               as tv
+		    ,  sum(heat)             as heat
+		    ,  sum(stove)            as stove
+		    ,  sum(blanket)          as blanket
+		    ,  sum(afry)             as afry
+		    ,  sum(ahs)              as ahs
+		    ,  sum(other_appliances) as other_appliances
+		from mem_app_ele
+		where mem_id = #{memId}
+		and to_char(use_dt, 'YYYY-MM-DD') = #{useDt}
+		<!-- <choose>
+			<when test=>
+			
+			</when>
+		</choose> -->
+		group by mem_id, to_char(use_dt, 'YYYY-MM-DD')
+    </select>
+
+</mapper>

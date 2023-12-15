@@ -1,0 +1,24 @@
+package com.ecoala.ele.eleAnalysis.web;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ecoala.ele.eleAnalysis.service.EleAnalysisService;
+
+
+
+@Controller
+public class EleAnalysisController {
+
+	
+
+	@Autowired
+	EleAnalysisService eleAnalysisService; 
+	
+
+	@RequestMapping("/eleAnalysisView")
+	public String eleAnalysis() {
+		return "user/eleAnalysis/eleAnalysisView";
+	}
+}

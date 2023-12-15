@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecoala.ele.eleInquiry.dao.IeleInquiryDAO">
+
+<!-- member 회원가입 -->
+    <select id="yearInquiry" parameterType="com.ecoala.ele.eleInquiry.vo.EleInquiryVO">
+       
+SELECT mem_id as memId,  TO_CHAR(MRD_DT, 'YY-MM') as date_year, round(sum(USE_ELE),3) as eleYear
+        FROM mem_ele
+        WHERE TO_CHAR(MRD_DT, 'YY') = '21'
+        and mem_id = '1110100002'
+        group by  mem_id,TO_CHAR(MRD_DT, 'YY-MM')
+        order by date_21;
+        </select>
+        
+<select id="monthInquiry" parameterType="com.ecoala.ele.eleInquiry.vo.EleInquiryVO">
+
+SELECT mem_id as memId,  TO_CHAR(MRD_DT, 'YY-MM-DD') as dateMonth, round(sum(USE_ELE),3) as eleMonth
+        FROM mem_ele
+        WHERE TO_CHAR(MRD_DT, 'YY-MM') = '21-11'
+        and mem_id = '1110100002'
+        group by  mem_id,TO_CHAR(MRD_DT, 'YY-MM-DD')
+        order by date_2111;
+</select>
+
+<select id="weekInquiry" parameterType="com.ecoala.ele.eleInquiry.vo.EleInquiryVO">
+
+SELECT a.mem_id as memId,a.date_2111 as dateWeek,a.ELE as eleWeek
+FROM (
+    SELECT mem_id, TO_CHAR(MRD_DT, 'YY-MM-DD') as date_2111,round(sum(USE_ELE),3) as ELE
+    FROM mem_ele
+    where TO_CHAR(MRD_DT, 'YY-MM') = '21-11'
+    and to_char(MRD_DT,'DD')  <![CDATA[<=]]> '20'
+    and mem_id = '1110100002'
+    group by mem_id, TO_CHAR(MRD_DT, 'YY-MM-DD')
+    ORDER BY date_2111 DESC
+) a
+WHERE ROWNUM <![CDATA[<=]]> 7;
+</select>
+<select id="getDateEleList" parameterType="com.ecoala.ele.eleInquiry.vo.EleInquiryVO">
+
+SELECT *
+from mem_ele;
+</select>
+
+</mapper>

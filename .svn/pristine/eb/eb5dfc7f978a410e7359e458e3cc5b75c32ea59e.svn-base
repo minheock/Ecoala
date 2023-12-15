@@ -1,0 +1,20 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<html>
+<head>
+	<title>Home</title>
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+<body>
+<ul style="font-size: 30px;">
+	<li><a href="${pageContext.request.contextPath}/loginView">사용자 로그인</a>
+	<li><a href="${pageContext.request.contextPath}/loginView">관리자 로그인</a>
+	<li><a href="${pageContext.request.contextPath}//registView">회원가입</a>
+	<li><a href="${pageContext.request.contextPath}/mainView">테스트-사용자메인으로가기</a>
+	<li><a href="${pageContext.request.contextPath}/mngrMemList">테스트-관리자메인으로가기</a>
+	
+</ul>
+
+</body>
+</html>

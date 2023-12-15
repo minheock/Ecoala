@@ -1,0 +1,27 @@
+package com.ecoala.ele.billPlan.web;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ * Class Name  : BillPlanController
+ * Author      : YoonGaYoung
+ * Created Date: 2023. 12. 4.
+ * Version: 1.0
+ * Purpose:   
+ * Description: 
+ */
+@Controller
+public class BillPlanController {
+
+	/* 요금계획하기 페이지 이동*/
+	@RequestMapping("/billPlanView")
+	public String billPlanView() {
+		return "user/billPlan/billPlanView";
+	}
+	
+	
+	
+	
+	/* 요금 상세보기 페이지 이동 */
+}

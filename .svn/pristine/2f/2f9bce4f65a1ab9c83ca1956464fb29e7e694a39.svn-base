@@ -1,0 +1,32 @@
+package com.ecoala.ele.billDet.web;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ * Class Name  : BillDetController
+ * Author      : YoonGaYoung
+ * Created Date: 2023. 12. 5.
+ * Version: 1.0
+ * Purpose:   
+ * Description: 
+ */
+@Controller
+public class BillDetController {
+
+	/* 요금 상세보기 페이지 이동 */
+	@RequestMapping("/billDetView")
+	public String billDetView() {
+		return "user/billDet/billDetView";
+	}
+////	요금 상세보기 페이지  [월별 요금을 고지하기 위해 월별 전력량 조회]
+////	이력이 있는 모든 달의 mem_app_ele 월별 합
+////	public List<BillPlanVO> billDet (BillPlanVO memId);
+//	public List<BillPlanVO> billDet(BillPlanVO memId) throws Exception{
+//		List<BillPlanVO> result = dao.getSumEleList(memId);
+//		if (result == null) {
+//			throw new Exception();
+//		}
+//		return result;
+//	}
+}

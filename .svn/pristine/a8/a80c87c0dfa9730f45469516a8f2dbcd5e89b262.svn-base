@@ -1,0 +1,16 @@
+package com.ecoala.ele.eleInquiry.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.ecoala.ele.eleInquiry.vo.EleInquiryVO;
+
+@Mapper
+public interface IEleInquiryDAO {
+	public EleInquiryVO yearInquiry(EleInquiryVO user);
+	public EleInquiryVO monthInquiry(EleInquiryVO user);
+	public EleInquiryVO weekInquiry(EleInquiryVO user);
+	public List<EleInquiryVO> getDateEleList(EleInquiryVO user);
+	
+}

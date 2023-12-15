@@ -1,0 +1,13 @@
+package com.ecoala.ele.main.vo;
+
+/**
+ * Class Name  : EleUsageVO
+ * Author      : ChoiMinHyeock
+ * Created Date: 2023. 11. 28.
+ * Version: 1.0
+ * Purpose:   하루전력량
+ * Description: 
+ */
+public class EleUsageVO {
+
+}

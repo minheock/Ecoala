@@ -1,0 +1,13 @@
+package com.ecoala.ele.member.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.ecoala.ele.member.vo.MemberVO;
+
+@Mapper
+public interface IMemberDAO {
+	public List<MemberVO> getMemInfo();
+
+}

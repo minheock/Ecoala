@@ -1,0 +1,25 @@
+<%--
+/**
+ * <pre>
+ * 1. 프로젝트명 : 에코알라 프로젝트
+ * 2. 작성일 : 2023. 11. 23. 오전 10:45:58
+ * 3. 작성자 : YoonGaYoung
+ * 4. 화면ID : 
+ * 5. 화면명 : 관리자 회원관리 페이지
+ * 6. 설명 : 
+ * </pre>
+ */
+--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%@include file="/WEB-INF/inc/left.jsp" %>
+관리자용 UI 필요함
+</body>
+</html>

@@ -1,0 +1,28 @@
+package com.ecoala.ele.billPlan.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.ecoala.ele.billPlan.vo.BillPlanVO;
+
+/**
+ * Class Name  : IBillPlanDAO
+ * Author      : YoonGaYoung
+ * Created Date: 2023. 12. 4.
+ * Version: 1.0
+ * Purpose:   
+ * Description: 
+ */
+@Mapper
+public interface IBillPlanDAO {
+	
+//	요금 계획하기 페이지 [목표치 - 사용량]을 위해 
+//	이번달의 전력량(mem_app_ele)의 합 가져오기
+	public BillPlanVO getSumEle (BillPlanVO memId);
+	
+//	요금 상세보기 페이지  [월별 요금을 고지하기 위해 월별 전력량 조회]
+//	이력이 있는 모든 달의 mem_app_ele 월별 합
+	public List<BillPlanVO> getSumEleList (BillPlanVO memId);
+
+}
